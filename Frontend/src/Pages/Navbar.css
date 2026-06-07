@@ -1,43 +1,144 @@
-.navbar{
+/* Master Menu Row Frame Configuration */
+.navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Pushes the brand elements left and nav options right */
     align-items: center;
     gap: 2rem;
 
-    padding: .2rem 1rem;
-    padding-right: 3rem;
+    /* Height-clamped structural padding ensures zero row widening */
+    padding: .2rem 3rem .2rem 1.5rem; 
     border-bottom: black dotted 0.08rem;
-
+    box-sizing: border-box;
+    background-color: #ffffff;
+    padding-top: .6rem;
+    padding-bottom: .6rem;
 }
 
-.navbar ul{
+/* Utilities */
+.monospace {
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   BRAND CAPSULE PIECES (LEFT ELEMENT CONTAINER)
+   ========================================================================== */
+.nav-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Compact Frame matching row depth thresholds safely */
+.nav-avatar-frame {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* Strict Base Outline */
+    border: 2px solid #412D15; 
+    
+    /* FIXED 7-SECOND CHRONO INTERVAL TELEMETRY LOOP */
+    animation: borderFlashPulse 7s infinite ease-in-out;
+    will-change: border-color, box-shadow;
+}
+
+.nav-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Identity Name String Label */
+.nav-brand-string {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #412D15;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s ease;
+}
+
+.nav-brand-group:hover .nav-brand-string {
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   NAVIGATION LIST UTILITIES
+   ========================================================================== */
+.navbar ul {
     display: flex;
     list-style: none;
     gap: 2rem;
     font-size: 1.2rem;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 900;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar li{
+.navbar li {
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
-.navbar li:hover{
+.navbar li:hover {
     color: #412D15;
 }
 
-.navbar button{
+.navbar button {
     cursor: pointer;
     padding: .5rem 1.5rem;
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1rem;
     border-radius: 2rem;
-    border:none;
+    border: none;
     background-color: #412D15;
     color: #E1DCC9;
+    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.navbar button:hover{
+.navbar button:hover {
     color: white;
+    background-color: #0d0905;
+}
+
+/* ==========================================================================
+   TACTICAL SHARP PULSING ANIMATION ENGINE
+   ========================================================================== */
+@keyframes borderFlashPulse {
+    /* 0% to 80% of runtime remains entirely resting and calm */
+    0%, 82%, 100% {
+        border-color: #412D15;
+        box-shadow: none;
+    }
+    /* Flashes into an intense highlight shape inside a concise 300ms spike window */
+    85% {
+        border-color: #8C3A2D; /* Vibrant distinguishable accent profile matching your hero details */
+        box-shadow: 0 0 10px rgba(140, 58, 45, 0.6);
+    }
+    /* Smooth recovery decay curve back to rest states */
+    92% {
+        border-color: #412D15;
+        box-shadow: none;
+    }
+}
+
+/* Responsive Scaling Rules for Mobile viewports */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.4rem 1rem;
+    }
+    .navbar ul {
+        gap: 1rem;
+        font-size: 1rem;
+    }
+    .nav-brand-string {
+        display: none; /* Keeps navigation clean and tight on small responsive view screens */
+    }
 }

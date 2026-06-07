@@ -50,16 +50,20 @@ const Work = () => {
   const [scrollContainer, setScrollContainer] = useState(null);
 
   useEffect(() => {
+    // Finds your custom scroll view container
     const container = document.querySelector(".content");
     if (container) {
       setScrollContainer(container);
     }
   }, []);
 
+  // FIXED CALIBRATION MATRIX: 
+  // Changed offset to ["start start", "end end"] so that the tracking math 
+  // initializes exactly at 0 when the section header hits the top scroll threshold.
   const { scrollYProgress } = useScroll({
     container: scrollContainer ? { current: scrollContainer } : undefined,
     target: sectionRef,
-    offset: ["start end", "end end"],
+    offset: ["start start", "end end"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -71,7 +75,6 @@ const Work = () => {
   return (
     <section ref={sectionRef} className="work-section">
       
-      {/* Streamlined Simple Header */}
       <div className="work-header">
         <div className="header-meta">
           <span className="section-label">SELECTED WORKS</span>
@@ -86,7 +89,7 @@ const Work = () => {
         </h2>
       </div>
 
-      <div className="journey">
+      <div className="journey-right-spine">
         
         {/* Winding Snake Path Tracker */}
         <div className="journey-svg-container">
@@ -118,13 +121,11 @@ const Work = () => {
           </svg>
         </div>
 
-        {/* Minimal Zero Origin Indicator */}
         <div className="origin-zero-symbol">
           <div className="zero-ring"></div>
           <span className="zero-label">00</span>
         </div>
 
-        {/* Projects Generation Loop */}
         {projects.map((project, index) => (
           <JourneyNode
             key={project.title}
@@ -138,53 +139,51 @@ const Work = () => {
 };
 
 const JourneyNode = ({ project, index }) => {
-  const isEven = index % 2 === 0;
-
   return (
     <motion.article
-      className={`journey-node ${isEven ? "left" : "right"}`}
+      className="journey-node-row"
       initial="ghost"
       whileInView="awake"
-      viewport={{ once: false, margin: "-25% 0px -28% 0px" }}
+      viewport={{ once: false, margin: "-10% 0px -15% 0px" }}
       variants={{
-        ghost: { opacity: 0.08, filter: "blur(5px)", y: 35 },
+        ghost: { opacity: 0.1, filter: "blur(4px)", y: 25 },
         awake: { opacity: 1, filter: "blur(0px)", y: 0 }
       }}
-      transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="node-dot-wrapper">
+      <div className="node-dot-track-pin">
         <motion.div 
-          className="node-dot"
+          className="node-dot-element"
           variants={{
-            ghost: { backgroundColor: "#ffffff", borderColor: "#E1DCC9", scale: 1, boxShadow: "none" },
+            ghost: { backgroundColor: "#ffffff", borderColor: "#E1DCC9", scale: 1 },
             awake: { 
               backgroundColor: "#412D15", 
               borderColor: "#412D15", 
-              scale: 1.5,
-              boxShadow: "0 0 0 6px rgba(65, 45, 21, 0.08)" 
+              scale: 1.4,
+              boxShadow: "0 0 0 6px rgba(65, 45, 21, 0.05)" 
             }
           }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.3 }}
         />
       </div>
 
-      <div className="project-card">
+      <div className="project-asymmetric-card">
         <div className="card-header-meta">
-          <span className="project-year">{project.year}</span>
-          <span className="project-index-tag">// 0{index + 1}</span>
+          <span className="project-year monospace">{project.year}</span>
+          <span className="project-index-tag monospace">// 0{index + 1}</span>
         </div>
         
         <span className="project-subtitle">{project.subtitle}</span>
-        <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <h3 className="project-title">{project.title}</h3>
+        <p className="project-description">{project.description}</p>
 
         <div className="project-tags">
           {project.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
+            <span key={tag} className="tag-chip">{tag}</span>
           ))}
         </div>
 
-        <a href={project.link} target="_blank" rel="noreferrer" className="project-cta-btn">
+        <a href={project.link} target="_blank" rel="noreferrer" className="project-cta-btn monospace">
           {project.cta}
         </a>
       </div>

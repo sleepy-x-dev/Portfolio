@@ -1,5 +1,6 @@
-import React from 'react'
-import './Navbar.css'
+import React from 'react';
+import './Navbar.css';
+import profile from "../assets/Profile.jpeg"; // Pulls the exact asset matching your sidebar setup
 
 const Navbar = () => {
   
@@ -20,6 +21,16 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      
+      {/* Dynamic Profile Branding Identity (Triggers landing view jump on click) */}
+      <div className="nav-brand-group" onClick={() => scrollToSection("home")}>
+        <div className="nav-avatar-frame">
+          <img src={profile} alt="Pranjal Kumar" className="nav-avatar-img" />
+        </div>
+        <span className="nav-brand-string monospace">PRANJAL.ML</span>
+      </div>
+
+      {/* Navigation Options Group */}
       <ul className="nav-links">
         <li onClick={() => scrollToSection("works")}>Works</li>
         <li onClick={() => scrollToSection("experiments")}>Experiments</li>
@@ -30,7 +41,7 @@ const Navbar = () => {
         Connect 😄
       </button>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
