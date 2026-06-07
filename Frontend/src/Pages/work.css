@@ -1,0 +1,307 @@
+/* Container Frame */
+.work-section {
+  background-color: #ffffff;
+  color: #412D15;
+  padding: 10rem 2rem 14rem 2rem;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  position: relative;
+}
+
+/* Structural Minimal Header */
+.work-header {
+  max-width: 800px;
+  margin: 0 auto 12rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label {
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  color: #412D15;
+  font-weight: 700;
+}
+
+.header-arrow {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #412D15;
+  opacity: 0.5;
+}
+
+.work-header h2 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.04em;
+  color: #412D15;
+}
+
+.serif-italic {
+  font-family: "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Journey Component Layout Grid */
+.journey {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15rem;
+  padding-top: 6rem;
+}
+
+/* Vector Curve Path Alignment */
+.journey-svg-container {
+  position: absolute;
+  top: 6rem;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px; 
+  pointer-events: none;
+  z-index: 1;
+}
+
+.journey-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ghost-path {
+  stroke: #E1DCC9;
+}
+
+.active-path {
+  stroke: #412D15;
+}
+
+/* Initial 00 Node Flag */
+.origin-zero-symbol {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.zero-ring {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid #412D15;
+  background: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.zero-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #412D15;
+}
+
+/* Node Elements Execution Blueprint */
+.journey-node {
+  position: relative;
+  display: flex;
+  width: 100%;
+  z-index: 2;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.journey-node.left {
+  justify-content: flex-start;
+}
+
+.journey-node.right {
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+}
+
+/* Axis Point Indicators */
+.node-dot-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.node-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid #E1DCC9;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Card Geometry Frame */
+.project-card {
+  width: 38%;
+  background: #E1DCC9;
+  border: 1px solid rgba(65, 45, 21, 0.03);
+  padding: 2.5rem;
+  border-radius: 12px;
+}
+
+.card-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.project-year {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #412D15;
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.project-index-tag {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: #412D15;
+  opacity: 0.3;
+}
+
+.project-subtitle {
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 500;
+  color: #412D15;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.project-card h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 1rem 0;
+  color: #412D15;
+}
+
+.project-card p {
+  color: #412D15;
+  opacity: 0.75;
+  line-height: 1.6;
+  font-size: 0.96rem;
+  margin-bottom: 2rem;
+}
+
+/* Tag Lists Layout */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.project-tags span {
+  font-family: monospace;
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.5);
+  color: #412D15;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  border: 1px solid rgba(65, 45, 21, 0.05);
+  font-weight: 500;
+}
+
+/* Clean Underlined Action Anchor */
+.project-cta-btn {
+  color: #412D15;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border-bottom: 1.5px solid #412D15;
+  padding-bottom: 1px;
+  transition: opacity 0.2s ease;
+  display: inline-block;
+}
+
+.project-cta-btn:hover {
+  opacity: 0.5;
+}
+
+/* Adaptive States Configured via InView */
+.journey-node.ghost {
+  opacity: 0.05;
+  filter: blur(5px);
+  transform: scale(0.96) translateY(30px);
+}
+
+.journey-node.awake {
+  opacity: 1;
+  filter: blur(0px);
+  transform: scale(1) translateY(0px);
+}
+
+/* Media Query System Optimization */
+@media (max-width: 900px) {
+  .work-header h2 {
+    font-size: 3rem;
+  }
+  .project-card {
+    width: 42%;
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-svg-container {
+    left: 20px;
+    transform: none;
+    width: 100px;
+  }
+  
+  .origin-zero-symbol {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+  
+  .node-dot-wrapper {
+    left: 20px;
+    transform: translate(-50%, -50%);
+  }
+
+  .journey-node.left, 
+  .journey-node.right {
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
+  .project-card {
+    width: calc(100% - 60px);
+  }
+}

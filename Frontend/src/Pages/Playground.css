@@ -1,0 +1,328 @@
+/* Core Section Workspace Framework */
+.playground-section {
+  background-color: #ffffff;
+  color: #412D15;
+  padding: 10rem 2.5rem 12rem 2.5rem;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  position: relative; 
+  overflow: hidden; /* Safeguards layout from absolute elements escaping bounds */
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+/* ==========================================================================
+   DYNAMIC BACKGROUND BLOCKS (Scattered across the full parent surface area)
+   ========================================================================== */
+.page-background-doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* Allows user interactions to slip seamlessly through layers */
+  z-index: 1;
+}
+
+.scattered-bg-node {
+  position: absolute;
+  color: #412D15; /* Unified dark theme coloring */
+  font-size: 1.15rem;
+  font-weight: 700;
+  white-space: nowrap;
+  user-select: none;
+  display: inline-block;
+  transition: transform 0.2s linear, opacity 0.2s ease; /* Handles fluid tracking runtime shifts */
+}
+
+/* ==========================================================================
+   INTERACTIVE APPLICATION INTERFACE CARDS
+   ========================================================================== */
+.playground-header {
+  max-width: 1200px;
+  margin: 0 auto 5rem auto;
+  border-bottom: 1px solid rgba(65, 45, 21, 0.08);
+  padding-bottom: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.sandbox-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin-bottom: 1rem;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #412D15;
+  border-radius: 50%;
+  animation: sandboxPulse 2s infinite ease-in-out;
+}
+
+.playground-header h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+/* Quadrant Layout Configurations */
+.playground-matrix {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 2; /* Forces content structures in front of backing canvas decorators */
+}
+
+/* Base Card Styles */
+.matrix-cell {
+  background-color: rgba(225, 220, 201, 0.85); /* Smooth opacity overlay allowing background highlights to peep through */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(65, 45, 21, 0.06);
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-sizing: border-box;
+}
+
+.cell-label {
+  font-family: monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #412D15;
+  opacity: 0.4;
+  margin-bottom: 2.5rem;
+}
+
+/* Module 01: Parameter Sliders Track Panel */
+.control-desk {
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+.slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-title {
+  font-family: monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.slider-num {
+  font-family: monospace;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* Linear Sliders Inputs */
+.matrix-range {
+  width: 100%;
+  height: 4px;
+  background: rgba(65, 45, 21, 0.12);
+  border-radius: 2px;
+  outline: none;
+  margin: 0.5rem 0;
+}
+
+.matrix-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #412D15;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.matrix-range::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.slider-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  opacity: 0.55;
+}
+
+.track-register-box {
+  border-top: 1px dashed rgba(65, 45, 21, 0.15);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+.track-switches {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.track-btn {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(65, 45, 21, 0.06);
+  color: #412D15;
+  font-family: monospace;
+  padding: 0.6rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.track-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.track-btn.selected {
+  background: #412D15;
+  color: #E1DCC9;
+  border-color: #412D15;
+}
+
+/* Module 02: Output Stream Terminal Area */
+.monitor-panel {
+  background-color: #0b0805; 
+  color: #f7eed7;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.monitor-panel .cell-label {
+  color: #f7eed7;
+  opacity: 0.25;
+}
+
+.monitor-header-row {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(247, 238, 215, 0.1);
+  padding-bottom: 0.75rem;
+}
+
+.runtime-label {
+  font-family: monospace;
+  font-size: 0.75rem;
+  opacity: 0.5;
+}
+
+.processed-prose-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 90px;
+}
+
+.prose-output-row {
+  font-size: 1.45rem;
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.primary-row { color: #ffffff; }
+.secondary-row { color: #ebdcb9; opacity: 0.8; }
+
+.prose-footnote-bar {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #d97706; 
+  background: rgba(217, 119, 6, 0.05);
+  border: 1px solid rgba(217, 119, 6, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  margin-top: auto;
+}
+
+.footnote-arrow { margin-right: 0.25rem; opacity: 0.4; }
+
+/* Module 03: Telemetry Context Output list */
+.hardware-log {
+  display: flex;
+  flex-direction: column;
+}
+
+.telemetry-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.tel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(65, 45, 21, 0.05);
+  padding-bottom: 0.5rem;
+}
+
+.tel-row span:first-child {
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.val-free { font-weight: 700; color: #412D15; }
+.val-online { color: #16a34a; font-weight: 700; }
+
+/* Animation Frames Loop */
+@keyframes sandboxPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Fluid Scalable Layouts Media Adaptations */
+@media (max-width: 1100px) {
+  .playground-matrix {
+    grid-template-columns: 1fr;
+  }
+  .control-desk {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .playground-section {
+    padding: 6rem 1.5rem;
+  }
+  .playground-header h2 {
+    font-size: 2.5rem;
+  }
+  .matrix-cell {
+    padding: 1.5rem;
+  }
+  .prose-output-row {
+    font-size: 1.25rem;
+  }
+}
