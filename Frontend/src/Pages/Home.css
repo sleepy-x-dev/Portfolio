@@ -10,8 +10,10 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    color: black;
 
     font-family: 'Bitcount Single', sans-serif;
+    font-weight: 600;
 }
 
 .availability{

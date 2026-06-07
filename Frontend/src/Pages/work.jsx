@@ -11,7 +11,7 @@ const projects = [
       "Implemented machine learning algorithms and mathematical foundations from scratch, packaging them into a zero-dependency library installable via pip.",
     tags: ["Python", "ML Fundamentals", "Open Source"],
     cta: "Install Package →",
-    link: "#",
+    link: "https://pypi.org/project/rootlearn/",
   },
   {
     year: "2025",
