@@ -1,56 +1,27 @@
-/* Core Section Workspace Framework */
+/* Core Section Framework */
 .playground-section {
   background-color: #ffffff;
   color: #412D15;
-  padding: 10rem 2.5rem 12rem 2.5rem;
+  padding: 8rem 3rem 10rem 3rem;
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  position: relative; 
-  overflow: hidden; /* Safeguards layout from absolute elements escaping bounds */
+  position: relative;
+  overflow: hidden;
 }
 
-.monospace {
-  font-family: monospace;
-}
+.monospace { font-family: monospace; }
 
-/* ==========================================================================
-   DYNAMIC BACKGROUND BLOCKS (Scattered across the full parent surface area)
-   ========================================================================== */
-.page-background-doodles {
-  position: absolute;
-  inset: 0;
-  pointer-events: none; /* Allows user interactions to slip seamlessly through layers */
-  z-index: 1;
-}
-
-.scattered-bg-node {
-  position: absolute;
-  color: #412D15; /* Unified dark theme coloring */
-  font-size: 1.15rem;
-  font-weight: 700;
-  white-space: nowrap;
-  user-select: none;
-  display: inline-block;
-  transition: transform 0.2s linear, opacity 0.2s ease; /* Handles fluid tracking runtime shifts */
-}
-
-/* ==========================================================================
-   INTERACTIVE APPLICATION INTERFACE CARDS
-   ========================================================================== */
 .playground-header {
   max-width: 1200px;
-  margin: 0 auto 5rem auto;
+  margin: 0 auto 3.5rem auto;
   border-bottom: 1px solid rgba(65, 45, 21, 0.08);
   padding-bottom: 2rem;
-  position: relative;
-  z-index: 2;
 }
 
 .sandbox-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: monospace;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -63,60 +34,92 @@
   height: 6px;
   background-color: #412D15;
   border-radius: 50%;
-  animation: sandboxPulse 2s infinite ease-in-out;
+  animation: pgPulse 2s infinite ease-in-out;
 }
 
 .playground-header h2 {
   font-size: 3.5rem;
   font-weight: 800;
   letter-spacing: -0.04em;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.sandbox-sub {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 800px;
+  opacity: 0.75;
   margin: 0;
 }
 
-/* Quadrant Layout Configurations */
-.playground-matrix {
+/* Vertical Architecture Stack spacing */
+.playground-vertical-stack {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 440px 1fr;
-  gap: 1.5rem;
-  position: relative;
-  z-index: 2; /* Forces content structures in front of backing canvas decorators */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-/* Base Card Styles */
-.matrix-cell {
-  background-color: rgba(225, 220, 201, 0.85); /* Smooth opacity overlay allowing background highlights to peep through */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(65, 45, 21, 0.06);
+.matrix-module {
   border-radius: 8px;
   padding: 2.5rem;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
-.cell-label {
+/* ==========================================================================
+   MODULE 01: CONTROLLER DASHBOARD PANEL
+   ========================================================================== */
+.control-dashboard {
+  background-color: #E1DCC9;
+  border: 1px solid rgba(65, 45, 21, 0.06);
+  min-height: 200px; 
+}
+
+.control-dashboard .module-label {
   font-family: monospace;
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: #412D15;
   opacity: 0.4;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Module 01: Parameter Sliders Track Panel */
-.control-desk {
-  grid-row: span 2;
-  display: flex;
-  flex-direction: column;
-  gap: 2.25rem;
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: center;
 }
 
-.slider-wrapper {
+.input-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.85rem; 
+}
+
+.input-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.text-stream-input {
+  background: #ffffff;
+  border: 1px solid rgba(65, 45, 21, 0.12);
+  border-radius: 6px;
+  color: #412D15;
+  padding: 1.1rem 1.25rem; 
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.2; 
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .slider-meta {
@@ -125,204 +128,190 @@
   align-items: center;
 }
 
-.slider-title {
-  font-family: monospace;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.slider-num {
-  font-family: monospace;
+.slider-value {
   font-size: 0.85rem;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
   font-weight: 700;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
 }
 
-/* Linear Sliders Inputs */
 .matrix-range {
+  -webkit-appearance: none;
   width: 100%;
   height: 4px;
   background: rgba(65, 45, 21, 0.12);
   border-radius: 2px;
   outline: none;
-  margin: 0.5rem 0;
+  margin: 0.8rem 0;
 }
 
 .matrix-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #412D15;
   cursor: pointer;
-  transition: transform 0.1s ease;
 }
 
-.matrix-range::-webkit-slider-thumb:hover {
-  transform: scale(1.3);
-}
-
-.slider-caption {
-  font-size: 0.75rem;
-  line-height: 1.4;
-  opacity: 0.55;
-}
-
-.track-register-box {
-  border-top: 1px dashed rgba(65, 45, 21, 0.15);
-  padding-top: 1.5rem;
-  margin-top: 1rem;
-}
-
-.track-switches {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.track-btn {
-  flex-grow: 1;
+.inspection-panel {
   background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(65, 45, 21, 0.06);
-  color: #412D15;
-  font-family: monospace;
-  padding: 0.6rem;
-  font-size: 0.75rem;
+  border: 1px solid rgba(65, 45, 21, 0.08);
+  border-radius: 6px;
+  padding: 1.25rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  height: 80px; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.inspect-header {
   font-weight: 700;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  opacity: 0.4;
+  font-size: 0.68rem;
 }
 
-.track-btn:hover {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.track-btn.selected {
-  background: #412D15;
-  color: #E1DCC9;
-  border-color: #412D15;
-}
-
-/* Module 02: Output Stream Terminal Area */
-.monitor-panel {
-  background-color: #0b0805; 
-  color: #f7eed7;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.monitor-panel .cell-label {
-  color: #f7eed7;
-  opacity: 0.25;
-}
-
-.monitor-header-row {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dashed rgba(247, 238, 215, 0.1);
-  padding-bottom: 0.75rem;
-}
-
-.runtime-label {
-  font-family: monospace;
-  font-size: 0.75rem;
-  opacity: 0.5;
-}
-
-.processed-prose-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-height: 90px;
-}
-
-.prose-output-row {
-  font-size: 1.45rem;
-  line-height: 1.45;
-  margin: 0;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-.primary-row { color: #ffffff; }
-.secondary-row { color: #ebdcb9; opacity: 0.8; }
-
-.prose-footnote-bar {
-  font-family: monospace;
-  font-size: 0.8rem;
-  color: #d97706; 
-  background: rgba(217, 119, 6, 0.05);
-  border: 1px solid rgba(217, 119, 6, 0.1);
-  padding: 0.75rem 1rem;
-  border-radius: 4px;
-  margin-top: auto;
-}
-
-.footnote-arrow { margin-right: 0.25rem; opacity: 0.4; }
-
-/* Module 03: Telemetry Context Output list */
-.hardware-log {
-  display: flex;
-  flex-direction: column;
-}
-
-.telemetry-table {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-top: 0.5rem;
-}
-
-.tel-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: monospace;
-  font-size: 0.78rem;
-  border-bottom: 1px solid rgba(65, 45, 21, 0.05);
-  padding-bottom: 0.5rem;
-}
-
-.tel-row span:first-child {
-  opacity: 0.5;
+.inspect-body {
+  color: #412D15;
   font-weight: 600;
 }
 
-.val-free { font-weight: 700; color: #412D15; }
-.val-online { color: #16a34a; font-weight: 700; }
+/* ==========================================================================
+   MODULE 02: HIGH-EXPANSION GRAPH CANVASES LAYER (MAX VISIBILITY RESET)
+   ========================================================================== */
+.visualization-canvas {
+  background-color: #000000; 
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 2.5rem;
+}
 
-/* Animation Frames Loop */
-@keyframes sandboxPulse {
+.monitor-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.visualization-canvas .module-label {
+  color: #ffffff;
+  opacity: 0.25;
+}
+
+.viz-status {
+  font-family: monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #a3e635; 
+  letter-spacing: 0.05em;
+}
+
+.svg-axis-labels text {
+  fill: #ffffff;
+  font-size: 12px; /* Increased font scale metrics */
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.35;
+}
+
+/* STRETCHED CANVAS VIEWPORT CONTAINER: Stretched down to 900px vertical depth limits */
+.svg-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 900px; 
+  position: relative;
+}
+
+.network-viz {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vector path styles */
+.matrix-link {
+  fill: none;
+  transition: all 0.25s linear;
+}
+
+.line-token-to-vector {
+  stroke: #ffffff;
+  stroke-width: 2;
+  opacity: 0.15;
+}
+
+.line-vector-to-hidden {
+  stroke: #ffffff;
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: 0.06;
+}
+
+.line-hidden-to-binary {
+  stroke: #ffffff;
+  stroke-width: 0.75;
+  opacity: 0.04;
+}
+
+/* Active Highlight lines tracking options */
+.link-active.line-vector-to-hidden {
+  stroke: #f59e0b; 
+  stroke-width: 2;
+  stroke-dasharray: none;
+  opacity: 0.55;
+}
+
+.link-active.line-hidden-to-binary {
+  stroke: #ffffff;
+  stroke-width: 1.75;
+  opacity: 0.45;
+}
+
+/* Component Node Typographic and structural scaling modifications */
+.matrix-node { cursor: pointer; }
+.node-base { stroke-width: 2.5; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); }
+.node-text { font-family: monospace; font-weight: 700; text-anchor: middle; user-select: none; pointer-events: none; }
+
+/* 1. Input layer components */
+.token-base { stroke: rgba(255, 255, 255, 0.45); fill: #000000; }
+.node-token .node-text { fill: #ffffff; font-size: 13px; }
+.node-token:hover .token-base { fill: #ffffff; stroke: #ffffff; transform: scale(1.15); }
+.node-token:hover .node-text { fill: #000000; }
+
+/* 2. Layer vector maps components */
+.vector-base { stroke: rgba(255, 255, 255, 0.2); fill: #000000; }
+.node-embedding .node-text { fill: #ffffff; opacity: 0.45; }
+.node-embedding:hover .vector-base { stroke: #f59e0b; fill: rgba(245, 158, 11, 0.15); }
+.node-embedding:hover .node-text { fill: #f59e0b; opacity: 1; }
+
+/* 3. Output bits terminal components */
+.bit-zero { stroke: rgba(255, 255, 255, 0.15); fill: #000000; }
+.node-binary .node-text { fill: #ffffff; opacity: 0.35; }
+.bit-one { stroke: #ffffff; fill: #ffffff; }
+.node-on.node-binary .node-text { fill: #000000; opacity: 1; font-weight: 900; }
+.node-binary:hover .node-base { transform: scale(1.35); stroke: #a3e635; }
+
+@keyframes pgPulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
 
-/* Fluid Scalable Layouts Media Adaptations */
-@media (max-width: 1100px) {
-  .playground-matrix {
+@media (max-width: 950px) {
+  .dashboard-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  .control-desk {
-    grid-row: span 1;
+  .inspection-panel {
+    height: auto;
+    min-height: 70px;
   }
-}
-
-@media (max-width: 768px) {
-  .playground-section {
-    padding: 6rem 1.5rem;
-  }
-  .playground-header h2 {
-    font-size: 2.5rem;
-  }
-  .matrix-cell {
-    padding: 1.5rem;
-  }
-  .prose-output-row {
-    font-size: 1.25rem;
+  .svg-wrapper {
+    min-height: 640px; 
   }
 }
