@@ -1,12 +1,9 @@
-/* ==========================================================================
-   MASTER RESET: WINDOW SCROLL ACCUMULATOR KILLS
-   ========================================================================== */
 html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
-  overflow: hidden !important; /* ABSOLUTELY BLOCKS OUTER BROWSER SCROLL GEARS */
+  overflow: hidden !important;
 }
 
 .main-viewport {
@@ -14,37 +11,33 @@ html, body {
   max-width: 100vw;
   height: 100vh;
   position: relative;
-  overflow: hidden !important; /* PREVENTS BASE SHEET OVERFLOW LEAKS */
+  overflow: hidden !important;
   background-color: #ffffff;
   display: flex;
   box-sizing: border-box;
 }
 
-/* ==========================================================================
-   SIDEBAR LAYER CAPSULE BOUNDS
-   ========================================================================== */
+/* SIDEBAR COLLAPSE BASELINE PROFILE:
+   By using absolute tracking overlay points, we let Framer Motion 
+   shrink its container shape down safely without throwing layout errors in the sub-pages.
+*/
 .sidebar-wrapper {
-  height: 100vh;
-  overflow: hidden !important;
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 30;
-  will-change: width, opacity, transform;
+  z-index: 100; /* Pushed on top of navbar layers to ensure clean morph visuals */
+  overflow: hidden;
+  background-color: #ffffff;
+  will-change: width, height, top, left, opacity;
 }
 
-/* Strictly bind child sidebar widths inside layout calculations */
 .sidebar-wrapper > aside,
 .sidebar-wrapper .sidebar-container,
 .sidebar-wrapper .sidebar {
   width: 280px !important;
   min-width: 280px !important;
   max-width: 280px !important;
+  height: 100vh;
 }
 
-/* ==========================================================================
-   CONTENT WRAPPER: PRODUCTION PIPELINE
-   ========================================================================== */
 .layout-wrapper {
   height: 100vh;
   position: absolute;
@@ -52,24 +45,22 @@ html, body {
   display: flex;
   flex-direction: column;
   z-index: 10;
-  overflow: hidden !important; /* REMOVES SECONDARY INNER TRACK DRIFTS */
+  overflow: hidden !important;
   will-change: width, left;
   box-sizing: border-box;
 }
 
-/* The SINGLE active scrolling track permitted across your document layout tree */
 .content {
   width: 100%;
-  height: calc(100vh - 70px); /* Safely compensates for your Navbar boundaries */
-  overflow-y: scroll; /* Locks in vertical track computing explicitly */
-  overflow-x: hidden !important; /* Strict protection against horizontal shifting jitter */
+  height: calc(100vh - 70px); 
+  overflow-y: scroll;
+  overflow-x: hidden !important;
   position: relative;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
 }
 
-/* Enforce child elements to map predictably step-by-step vertically */
 .content > div {
   width: 100%;
   max-width: 100%;

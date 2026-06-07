@@ -1,27 +1,25 @@
-/* Master Menu Row Frame Configuration */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Pushes the brand elements left and nav options right */
+    justify-content: space-between; 
     align-items: center;
     gap: 2rem;
-
-    /* Height-clamped structural padding ensures zero row widening */
-    padding: .2rem 3rem .2rem 1.5rem; 
+    padding: .2rem 3rem .2rem 24px; /* MATCHES APP.JSX LEFT TRANSFORM TARGET */
     border-bottom: black dotted 0.08rem;
     box-sizing: border-box;
     background-color: #ffffff;
-    padding-top: .6rem;
-    padding-bottom: .6rem;
+    height: 70px;
 }
 
-/* Utilities */
-.monospace {
-    font-family: monospace;
+.monospace { font-family: monospace; }
+
+.nav-brand-container {
+    min-width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-/* ==========================================================================
-   BRAND CAPSULE PIECES (LEFT ELEMENT CONTAINER)
-   ========================================================================== */
 .nav-brand-group {
     display: flex;
     align-items: center;
@@ -30,7 +28,6 @@
     user-select: none;
 }
 
-/* Compact Frame matching row depth thresholds safely */
 .nav-avatar-frame {
     width: 32px;
     height: 32px;
@@ -40,11 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
-    /* Strict Base Outline */
     border: 2px solid #412D15; 
-    
-    /* FIXED 7-SECOND CHRONO INTERVAL TELEMETRY LOOP */
     animation: borderFlashPulse 7s infinite ease-in-out;
     will-change: border-color, box-shadow;
 }
@@ -55,7 +48,6 @@
     object-fit: cover;
 }
 
-/* Identity Name String Label */
 .nav-brand-string {
     font-size: 0.95rem;
     font-weight: 800;
@@ -64,13 +56,8 @@
     transition: opacity 0.2s ease;
 }
 
-.nav-brand-group:hover .nav-brand-string {
-    opacity: 0.7;
-}
+.nav-brand-group:hover .nav-brand-string { opacity: 0.7; }
 
-/* ==========================================================================
-   NAVIGATION LIST UTILITIES
-   ========================================================================== */
 .navbar ul {
     display: flex;
     list-style: none;
@@ -82,14 +69,8 @@
     padding: 0;
 }
 
-.navbar li {
-    cursor: pointer;
-    transition: color 0.2s ease;
-}
-
-.navbar li:hover {
-    color: #412D15;
-}
+.navbar li { cursor: pointer; transition: color 0.2s ease; }
+.navbar li:hover { color: #412D15; }
 
 .navbar button {
     cursor: pointer;
@@ -103,42 +84,16 @@
     transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.navbar button:hover {
-    color: white;
-    background-color: #0d0905;
-}
+.navbar button:hover { color: white; background-color: #0d0905; }
 
-/* ==========================================================================
-   TACTICAL SHARP PULSING ANIMATION ENGINE
-   ========================================================================== */
 @keyframes borderFlashPulse {
-    /* 0% to 80% of runtime remains entirely resting and calm */
-    0%, 82%, 100% {
-        border-color: #412D15;
-        box-shadow: none;
-    }
-    /* Flashes into an intense highlight shape inside a concise 300ms spike window */
-    85% {
-        border-color: #8C3A2D; /* Vibrant distinguishable accent profile matching your hero details */
-        box-shadow: 0 0 10px rgba(140, 58, 45, 0.6);
-    }
-    /* Smooth recovery decay curve back to rest states */
-    92% {
-        border-color: #412D15;
-        box-shadow: none;
-    }
+    0%, 82%, 100% { border-color: #412D15; box-shadow: none; }
+    85% { border-color: #8C3A2D; box-shadow: 0 0 10px rgba(140, 58, 45, 0.6); }
+    92% { border-color: #412D15; box-shadow: none; }
 }
 
-/* Responsive Scaling Rules for Mobile viewports */
 @media (max-width: 768px) {
-    .navbar {
-        padding: 0.4rem 1rem;
-    }
-    .navbar ul {
-        gap: 1rem;
-        font-size: 1rem;
-    }
-    .nav-brand-string {
-        display: none; /* Keeps navigation clean and tight on small responsive view screens */
-    }
+    .navbar { padding: 0.4rem 1rem; }
+    .navbar ul { gap: 1rem; font-size: 1rem; }
+    .nav-brand-container { display: none; }
 }

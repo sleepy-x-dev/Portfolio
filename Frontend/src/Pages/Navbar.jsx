@@ -1,15 +1,15 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Navbar.css';
-import profile from "../assets/Profile.jpeg"; // Pulls the exact asset matching your sidebar setup
+import profile from "../assets/Profile.jpeg";
 
-const Navbar = () => {
+const Navbar = ({ isScrolledPastHero }) => {
   
   const scrollToSection = (id) => {
     const targetElement = document.getElementById(id);
     const scrollContainer = document.querySelector(".content");
 
     if (targetElement && scrollContainer) {
-      // Calculates the position of the target relative to the scroll container
       const targetPosition = targetElement.offsetTop;
       
       scrollContainer.scrollTo({
@@ -22,15 +22,27 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       
-      {/* Dynamic Profile Branding Identity (Triggers landing view jump on click) */}
-      <div className="nav-brand-group" onClick={() => scrollToSection("home")}>
-        <div className="nav-avatar-frame">
-          <img src={profile} alt="Pranjal Kumar" className="nav-avatar-img" />
-        </div>
-        <span className="nav-brand-string monospace">PRANJAL.ML</span>
+      {/* Brand space waiting for the sidebar element to merge into it */}
+      <div className="nav-brand-container">
+        <AnimatePresence>
+          {isScrolledPastHero && (
+            <motion.div 
+              className="nav-brand-group" 
+              onClick={() => scrollToSection("home")}
+              initial={{ opacity: 0, scale: 0.6, filter: "blur(2px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.7, filter: "blur(1px)" }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }} // Slipped a tiny delay to allow seamless blending
+            >
+              <div className="nav-avatar-frame">
+                <img src={profile} alt="Pranjal Kumar" className="nav-avatar-img" />
+              </div>
+              <span className="nav-brand-string monospace">PRANJAL.ML</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Navigation Options Group */}
       <ul className="nav-links">
         <li onClick={() => scrollToSection("works")}>Works</li>
         <li onClick={() => scrollToSection("experiments")}>Experiments</li>

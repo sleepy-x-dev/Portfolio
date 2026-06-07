@@ -19,7 +19,7 @@ const App = () => {
     const scrollContainer = contentRef.current;
     if (!scrollContainer) return;
 
-    // Initialize Lenis Momentum Smooth Scroll Engine
+    // Initialize Smooth Momentum Scroll Engine
     const lenis = new Lenis({
       wrapper: scrollContainer,
       content: scrollContainer,
@@ -34,7 +34,6 @@ const App = () => {
     }
     requestAnimationFrame(raf);
 
-    // Track vertical scroll position inside the container to trigger animations
     const handleScroll = () => {
       if (scrollContainer.scrollTop > 200) {
         setIsScrolledPastHero(true);
@@ -53,29 +52,37 @@ const App = () => {
 
   return (
     <div className="main-viewport">
-      {/* 1. Animated Sidebar Wrapper */}
+      {/* 1. COLLAPSING SIDEBAR GENERATOR:
+         Instead of sliding out horizontally to the left, this block scales down 
+         and morphs directly toward the top-left position where the navbar avatar resides.
+      */}
       <motion.div 
         className="sidebar-wrapper"
         animate={{ 
-          width: isScrolledPastHero ? '0px' : '280px',
+          width: isScrolledPastHero ? '32px' : '280px',
+          height: isScrolledPastHero ? '32px' : '100vh',
           opacity: isScrolledPastHero ? 0 : 1,
-          x: isScrolledPastHero ? -80 : 0
+          top: isScrolledPastHero ? '19px' : '0px',   /* Centers perfectly into the navbar row */
+          left: isScrolledPastHero ? '24px' : '0px',  /* Aligns directly over the avatar lens */
+          borderRadius: isScrolledPastHero ? '50%' : '0px'
         }}
-        transition={{ duration: 0.6, cubicBezier: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.65, cubicBezier: [0.16, 1, 0.3, 1] }}
+        style={{ transformOrigin: "top left" }}
       >
         <Sidebar />
       </motion.div>
 
-      {/* 2. Interactive Content Viewport Frame (Stable Percentage Sizing) */}
+      {/* 2. Content Framework - Stretches fluidly to 100% */}
       <motion.div 
         className="layout-wrapper"
         animate={{ 
           width: isScrolledPastHero ? '100%' : 'calc(100% - 280px)',
           left: isScrolledPastHero ? '0px' : '280px'
         }}
-        transition={{ duration: 0.6, cubicBezier: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.65, cubicBezier: [0.16, 1, 0.3, 1] }}
       >
-        <Navbar />
+        <Navbar isScrolledPastHero={isScrolledPastHero} />
+        
         <div className="content" ref={contentRef}>
           <div id="home"><Home /></div>
           <div id="works"><Work /></div>
