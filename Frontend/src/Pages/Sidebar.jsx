@@ -37,18 +37,20 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Module 02: Vibrant High-Energy Channel Matrix */}
+        {/* Module 02: Reordered Channel Matrix (LinkedIn -> GitHub -> Instagram -> Email) */}
         <div className="navigation-channels">
           <div className="panel-tag-header">// ACTIVE_CHANNELS</div>
 
-          <a href="https://www.instagram.com/pranjal._.kumar_/" target="_blank" rel="noreferrer" className="interactive-channel-card insta-hover">
+          {/* 1. LinkedIn */}
+          <a href="https://www.linkedin.com/in/pranjal-kumar0903/" target="_blank" rel="noreferrer" className="interactive-channel-card linkedin-hover">
             <div className="card-left-group">
-              <div className="icon-box"><FaInstagram /></div>
-              <span className="channel-title">Instagram</span>
+              <div className="icon-box"><FaLinkedin /></div>
+              <span className="channel-title">LinkedIn</span>
             </div>
             <FaArrowUpRightFromSquare className="card-arrow-trigger" />
           </a>
 
+          {/* 2. GitHub */}
           <a href="https://github.com/sleepy-x-dev" target="_blank" rel="noreferrer" className="interactive-channel-card github-hover">
             <div className="card-left-group">
               <div className="icon-box"><FaGithub /></div>
@@ -57,18 +59,20 @@ const Sidebar = () => {
             <FaArrowUpRightFromSquare className="card-arrow-trigger" />
           </a>
 
-          <a href="mailto:pranjalkumar0903@gmail.com" className="interactive-channel-card email-hover">
+          {/* 3. Instagram */}
+          <a href="https://www.instagram.com/pranjal._.kumar_/" target="_blank" rel="noreferrer" className="interactive-channel-card insta-hover">
             <div className="card-left-group">
-              <div className="icon-box"><FaEnvelope /></div>
-              <span className="channel-title">Email</span>
+              <div className="icon-box"><FaInstagram /></div>
+              <span className="channel-title">Instagram</span>
             </div>
             <FaArrowUpRightFromSquare className="card-arrow-trigger" />
           </a>
 
-          <a href="https://www.linkedin.com/in/pranjal-kumar0903/" target="_blank" rel="noreferrer" className="interactive-channel-card linkedin-hover">
+          {/* 4. Email */}
+          <a href="mailto:pranjalkumar0903@gmail.com" className="interactive-channel-card email-hover">
             <div className="card-left-group">
-              <div className="icon-box"><FaLinkedin /></div>
-              <span className="channel-title">LinkedIn</span>
+              <div className="icon-box"><FaEnvelope /></div>
+              <span className="channel-title">Email</span>
             </div>
             <FaArrowUpRightFromSquare className="card-arrow-trigger" />
           </a>
