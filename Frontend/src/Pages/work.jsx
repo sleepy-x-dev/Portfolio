@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
-import "./Work.css";
+import "./work.css";
 
 const projects = [
   {
