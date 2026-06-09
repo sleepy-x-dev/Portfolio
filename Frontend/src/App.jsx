@@ -9,7 +9,6 @@ import Footer from './Pages/Footer';
 import Lenis from '@studio-freight/lenis';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaEllipsisVertical, FaXmark } from 'react-icons/fa6';
-import profile from "./assets/Profile.jpeg"; // Pulls the unified asset avatar
 
 import './App.css';
 
@@ -37,7 +36,7 @@ const App = () => {
     requestAnimationFrame(raf);
 
     const handleScroll = () => {
-      if (scrollContainer.scrollTop > 180) {
+      if (scrollContainer.scrollTop > 200) {
         setIsScrolledPastHero(true);
       } else {
         setIsScrolledPastHero(false);
@@ -76,7 +75,7 @@ const App = () => {
         {isMobileMenuOpen ? <FaXmark /> : <FaEllipsisVertical />}
       </button>
 
-      {/* 📱 PREMIUM ASYMMETRIC MOBILE NAV OVERLAY DRAWER */}
+      {/* 📱 Mobile Drop Drawer Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -84,16 +83,15 @@ const App = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "linear" }}
+            transition={{ duration: 0.25, ease: "linear" }}
           >
             <motion.div 
               className="mobile-drawer-card"
-              initial={{ y: -40, opacity: 0 }}
+              initial={{ y: -30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -30, opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ y: -20, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
-              {/* Decorative Background Large Watermark Label */}
               <div className="mobile-drawer-bg-text monospace">PRANJAL</div>
 
               <div className="mobile-drawer-header-meta">
@@ -130,52 +128,27 @@ const App = () => {
         )}
       </AnimatePresence>
 
-      {/* 1. 🖥️ PREMIUM SIDEBAR MORPH FLUID CONTAINER */}
+      {/* 1. 🖥️ ORIGINAL DESKTOP SIDEBAR TRACK */}
       <motion.div 
-        className="sidebar-wrapper desktop-only-layer"
+        className="sidebar-wrapper"
         animate={{ 
-          width: isScrolledPastHero ? '32px' : '280px',
-          height: isScrolledPastHero ? '32px' : '100vh',
-          top: isScrolledPastHero ? '19px' : '0px',   
-          left: isScrolledPastHero ? '24px' : '0px',  
-          borderRadius: isScrolledPastHero ? '50%' : '0px',
-          boxShadow: isScrolledPastHero ? '0 0 0 2px #412D15' : 'none'
+          width: isScrolledPastHero ? '0px' : '280px',
+          opacity: isScrolledPastHero ? 0 : 1,
+          x: isScrolledPastHero ? -80 : 0
         }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        style={{ transformOrigin: "top left" }}
+        transition={{ duration: 0.6, cubicBezier: [0.16, 1, 0.3, 1] }}
       >
-        {/* CROSS-FADE REVEAL: Switches from full sidebar to smooth avatar lens based on scroll depth */}
-        <div className="morph-content-shield" style={{ width: '280px', height: '100%' }}>
-          <motion.div
-            className="actual-sidebar-embed"
-            animate={{ opacity: isScrolledPastHero ? 0 : 1, filter: isScrolledPastHero ? "blur(4px)" : "blur(0px)" }}
-            transition={{ duration: 0.25 }}
-            style={{ pointerEvents: isScrolledPastHero ? 'none' : 'auto' }}
-          >
-            <Sidebar />
-          </motion.div>
-
-          {isScrolledPastHero && (
-            <motion.div 
-              className="morph-target-avatar"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-            >
-              <img src={profile} alt="Pranjal Kumar" className="collapsed-lens-img" />
-            </motion.div>
-          )}
-        </div>
+        <Sidebar />
       </motion.div>
 
-      {/* 2. Content Layout Viewport Track */}
+      {/* 2. 🖥️ ORIGINAL DESKTOP CONTENT VIEWPORT */}
       <motion.div 
         className="layout-wrapper"
         animate={{ 
           width: isScrolledPastHero ? '100%' : 'calc(100% - 280px)',
           left: isScrolledPastHero ? '0px' : '280px'
         }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.6, cubicBezier: [0.16, 1, 0.3, 1] }}
       >
         <div className="desktop-navbar-container">
           <Navbar isScrolledPastHero={isScrolledPastHero} />
