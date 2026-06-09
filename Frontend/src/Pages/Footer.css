@@ -214,3 +214,91 @@
     align-items: flex-start;
   }
 }
+
+/* ==========================================================================
+   📱 ULTRA-COMPACT MOBILE OVERHAUL: CONNECT FOOTER MODULE
+   ========================================================================== */
+@media (max-width: 768px) {
+  .connect-footer {
+    /* Trims padding to give the content maximum screen space width */
+    padding: 4rem 1.25rem 2.5rem 1.25rem;
+  }
+
+  .footer-container {
+    gap: 4rem; /* Cut in half from 8rem to remove massive dead space gaps */
+  }
+
+  .footer-main-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  /* MINI FOOTER PITCH RE-CALIBRATION:
+     Dropped from 2.6rem to a crisp 1.7rem to prevent awkward multi-line text wrapping.
+     Adjusted line height to 1.2 so the dense fonts look pristine and editorial.
+  */
+  .footer-pitch {
+    font-size: 1.7rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .footer-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  /* LINK REGISTER TARGET OVERHAUL */
+  .footer-links-block {
+    max-width: 100% !important;
+  }
+
+  .footer-link-row {
+    padding: 1rem 0; /* Slightly tighter but optimized for touch targets */
+    font-size: 0.82rem;
+  }
+
+  /* METADATA SYSTEM MONITOR DASHBOARD */
+  .footer-meta-bar {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  .meta-left {
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .meta-item {
+    font-size: 0.75rem;
+    justify-content: space-between; /* Flushes data labels nicely on mobile */
+    border-bottom: 1px solid rgba(225, 220, 201, 0.04);
+    padding-bottom: 0.35rem;
+  }
+
+  /* Back-to-Top Mechanics alignment reset */
+  .meta-right {
+    align-items: flex-start; /* Flows naturally left aligned in mobile column stack */
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .scroll-top-btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0;
+  }
+
+  .copyright-text {
+    font-size: 0.68rem;
+    opacity: 0.25;
+  }
+}

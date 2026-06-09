@@ -315,3 +315,146 @@
     min-height: 640px; 
   }
 }
+
+/* ==========================================================================
+   📱 ADAPTIVE MOBILE OVERHAUL: NEURAL PLAYGROUND SANDBOX (CANVAS SPACING FIX)
+   ========================================================================== */
+@media (max-width: 950px) {
+  .playground-section {
+    padding: 4rem 1.25rem 3rem 1.25rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .playground-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .sandbox-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .playground-header h2 {
+    font-size: 1.65rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .sandbox-sub {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+
+  .playground-vertical-stack {
+    gap: 1.25rem;
+  }
+
+  /* MODULE 01: CONTROLLER PANEL RESETS */
+  .matrix-module {
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+
+  .control-dashboard .module-label {
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+  }
+
+  .input-group {
+    gap: 0.5rem;
+  }
+
+  .input-title {
+    font-size: 0.75rem;
+  }
+
+  .text-stream-input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .matrix-range {
+    margin: 0.5rem 0;
+  }
+
+  .inspection-panel {
+    height: auto !important;
+    min-height: auto;
+    padding: 1rem;
+    gap: 0.25rem;
+  }
+
+  .inspect-header {
+    font-size: 0.62rem;
+  }
+
+  .inspect-body {
+    font-size: 0.78rem;
+  }
+
+  /* MODULE 02: EMBEDDING VECTOR SVG MONITOR TRACK */
+  .visualization-canvas {
+    padding: 1.25rem 1rem;
+    overflow: hidden;
+  }
+
+  .monitor-top-bar {
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    /* Forces header strings to break cleanly if they run out of space */
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .viz-status {
+    font-size: 0.68rem;
+  }
+
+  /* FIXED CALIBRATION ENGINE: 
+     Instead of shrinking the height container down aggressively (which breaks the nodes), 
+     we give the canvas a scrollable overflow box. This keeps the network readable 
+     and lets mobile users swipe to view the full diagram cleanly.
+  */
+  .svg-wrapper {
+    width: 100%;
+    height: 480px !important;
+    min-height: 480px !important;
+    overflow-y: scroll; /* ALLOWS INTERNAL VERTICAL SWIPING FOR INDEPENDENT NODES */
+    overflow-x: auto;   /* PRINTS SAFE-GUARD HORIZONTAL SCROLL CHECKS */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 1rem 0.5rem;
+    background: #050403; /* Deep dark layer behind active weights */
+    box-sizing: border-box;
+  }
+
+  /* Force the inner SVG map layer to maintain a readable vertical size 
+     regardless of how small the phone monitor screen boundary computes */
+  .network-viz {
+    min-height: 720px !important; 
+    width: 100%;
+    display: block;
+  }
+
+  /* Scale down typographic metrics for cleaner data visibility inside the container scroll */
+  .svg-axis-labels text {
+    font-size: 10px;
+  }
+
+  .node-token .node-text {
+    font-size: 11px;
+  }
+
+  .node-base {
+    stroke-width: 1.75;
+  }
+}

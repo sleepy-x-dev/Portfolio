@@ -175,3 +175,39 @@
   .terminal-body { height: 400px; padding: 1.5rem; }
   .terminal-row, .terminal-prompt, .terminal-input-row input { font-size: 0.85rem; }
 }
+
+/* ==========================================================================
+   📱 EXTENSION ADJUSTMENTS: TERMINAL HEADER COLLAPSE FIXED
+   ========================================================================== */
+@media (max-width: 768px) {
+  
+  /* Restructure the header layout container to act as a normal row */
+  .terminal-bar {
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between; /* Pushes dots left, and moves the title cleanly to the right */
+    align-items: center;
+  }
+
+  /* FIXED: Remove absolute positioning on mobile to stop overlapping */
+  .terminal-window-title {
+    position: static !important;
+    transform: none !important;
+    left: auto !important;
+    
+    /* Elegant text-trimming rule to prevent extra long paths from breaking line wrapping */
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    
+    font-size: 0.65rem; /* Shrunk slightly for better pixel tracking space */
+    opacity: 0.4;
+  }
+  
+  .window-dots {
+    gap: 0.35rem;
+    flex-shrink: 0; /* Prevents circles from squeezing into ovals */
+  }
+}
